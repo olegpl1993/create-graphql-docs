@@ -50,7 +50,7 @@ function RenderDocs(props: Props) {
 
   function DefaultDocs() {
     return (
-      <div className="docs">
+      <div className="render-docs">
         <div className="render-docs-header">
           <div className="render-docs-header-title">{doc.title}</div>
         </div>

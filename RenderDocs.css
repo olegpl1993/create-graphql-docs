@@ -90,7 +90,9 @@ h6 {
 }
 
 .render-docs {
-  margin-top: 20px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
 .render-docs-header {
   display: flex;
