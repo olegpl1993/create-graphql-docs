@@ -51,20 +51,18 @@ function RenderDocs(props: Props) {
   function DefaultDocs() {
     return (
       <div className="documentation">
-        <div className="documentation-root-header">
-          <div className="documentation-root-header-title">{documentation.title}</div>
+        <div className="render-docs-header">
+          <div className="render-docs-header-title">{documentation.title}</div>
         </div>
-        <div className="documentation-root-description">
+        <div className="render-docs-description">
           A GraphQL schema provides a root type for each kind of operation.
         </div>
-        <div className="documentation-root">
-          <div className="documentation-root-types">Root Types</div>
-          <div className="documentation-root-content">
-            <span className="documentation-root-field">query</span>
-            :
-            {' '}
+        <div className="render-docs">
+          <div className="render-docs-types">Root Types</div>
+          <div className="render-docs-content">
+            <span className="render-docs-field">query</span>:{' '}
             <span
-              className="documentation-root-scalar"
+              className="render-docs-scalar"
               onClick={() => {
                 setDocumentation({ type: 'Query', selectedType: 'Query', title: 'Query' });
                 setBackStack((prevStack) => [
@@ -88,7 +86,7 @@ function RenderDocs(props: Props) {
           [
           <Link
             to="/graphiql"
-            className="documentation-explorer-field-type"
+            className="render-exp-field-type"
             onClick={() => {
               setDocumentation({
                 type: item.type.ofType.name,
@@ -117,7 +115,7 @@ function RenderDocs(props: Props) {
           [
           <Link
             to="/graphiql"
-            className="documentation-explorer-field-type"
+            className="render-exp-field-type"
             onClick={() => {
               setDocumentation({
                 type: item.type.ofType.ofType.name,
@@ -143,7 +141,7 @@ function RenderDocs(props: Props) {
     return (
       <Link
         to="/graphiql"
-        className="documentation-explorer-field-type"
+        className="render-exp-field-type"
         onClick={() => {
           setDocumentation({
             type: item.type.name,
@@ -166,21 +164,20 @@ function RenderDocs(props: Props) {
   }
 
   function fieldArguments(current: GraphQLNestedList) {
-    const clazz = current.args.length > 1
-      ? 'documentation-explorer-field-arguments-notsingle'
-      : 'documentation-explorer-field-arguments-single';
+    const clazz =
+      current.args.length > 1
+        ? 'render-exp-field-arguments-notsingle'
+        : 'render-exp-field-arguments-single';
     return (
       <>
         {current.args.map((arg) => {
           if (arg.type instanceof GraphQLInputObjectType) {
             return (
               <div className={clazz} key={arg.name}>
-                <span className="documentation-explorer-field-arguments">{arg.name}</span>
-                :
-                {' '}
+                <span className="render-exp-field-arguments">{arg.name}</span>:{' '}
                 <Link
                   to="/graphiql"
-                  className="documentation-explorer-field-type"
+                  className="render-exp-field-type"
                   onClick={() => {
                     setDocumentation({
                       type: arg.type.name,
@@ -205,11 +202,10 @@ function RenderDocs(props: Props) {
           if (arg.type.ofType instanceof GraphQLList) {
             return (
               <div className={clazz} key={arg.name}>
-                <span className="documentation-explorer-field-arguments">{arg.name}</span>
-                : [
+                <span className="render-exp-field-arguments">{arg.name}</span>: [
                 <Link
                   to="/graphiql"
-                  className="documentation-explorer-field-type"
+                  className="render-exp-field-type"
                   onClick={() => {
                     setDocumentation((prev) => ({
                       ...prev,
@@ -226,7 +222,7 @@ function RenderDocs(props: Props) {
                     ]);
                   }}
                 >
-                  <span className="documentation-explorer-field-type">
+                  <span className="render-exp-field-type">
                     {arg.type.ofType.ofType.ofType.name}
                   </span>
                 </Link>
@@ -237,12 +233,10 @@ function RenderDocs(props: Props) {
           if (arg.type.ofType instanceof GraphQLScalarType) {
             return (
               <div className={clazz} key={arg.name}>
-                <span className="documentation-explorer-field-arguments">{arg.name}</span>
-                :
-                {' '}
+                <span className="render-exp-field-arguments">{arg.name}</span>:{' '}
                 <Link
                   to="/graphiql"
-                  className="documentation-explorer-field-type"
+                  className="render-exp-field-type"
                   onClick={() => {
                     setDocumentation((prev) => ({
                       ...prev,
@@ -267,12 +261,10 @@ function RenderDocs(props: Props) {
           }
           return (
             <div className={clazz} key={arg.name}>
-              <span className="documentation-explorer-field-arguments">{arg.name}</span>
-              :
-              {' '}
+              <span className="render-exp-field-arguments">{arg.name}</span>:{' '}
               <Link
                 to="/graphiql"
-                className="documentation-explorer-field-type"
+                className="render-exp-field-type"
                 onClick={() => {
                   setDocumentation((prev) => ({
                     ...prev,
@@ -302,17 +294,17 @@ function RenderDocs(props: Props) {
     if (current.type instanceof GraphQLList) {
       return (
         <>
-          <div className="documentation-explorer-field-description">
+          <div className="render-exp-field-description">
             <p>{current.description}</p>
           </div>
-          <div className="documentation-root">
-            <div className="documentation-root-types">Type</div>
+          <div className="render-docs">
+            <div className="render-docs-types">Type</div>
           </div>
-          <div className="documentation-explorer-field">
+          <div className="render-exp-field">
             [
             <Link
               to="/graphiql"
-              className="documentation-explorer-field-type"
+              className="render-exp-field-type"
               onClick={() => {
                 setDocumentation({
                   selectedType: current.type.ofType.name,
@@ -339,17 +331,17 @@ function RenderDocs(props: Props) {
     if (current.type instanceof GraphQLNonNull) {
       return (
         <div>
-          <div className="documentation-explorer-field-description">
+          <div className="render-exp-field-description">
             <p>{current.description}</p>
           </div>
-          <div className="documentation-root">
-            <div className="documentation-root-types">Type</div>
+          <div className="render-docs">
+            <div className="render-docs-types">Type</div>
           </div>
-          <div className="documentation-explorer-field">
+          <div className="render-exp-field">
             [
             <Link
               to="/graphiql"
-              className="documentation-explorer-field-type"
+              className="render-exp-field-type"
               onClick={() => {
                 setDocumentation({
                   type: current.type.ofType.ofType.name,
@@ -376,16 +368,16 @@ function RenderDocs(props: Props) {
     if (current.type instanceof GraphQLScalarType) {
       return (
         <div>
-          <div className="documentation-explorer-field-description">
+          <div className="render-exp-field-description">
             <p>{current.description}</p>
           </div>
-          <div className="documentation-root">
-            <div className="documentation-root-types">Type</div>
+          <div className="render-docs">
+            <div className="render-docs-types">Type</div>
           </div>
-          <div className="documentation-explorer-field">
+          <div className="render-exp-field">
             <Link
               to="/graphiql"
-              className="documentation-explorer-field-type"
+              className="render-exp-field-type"
               onClick={() => {
                 setDocumentation((prev) => ({
                   ...prev,
@@ -410,16 +402,16 @@ function RenderDocs(props: Props) {
     }
     return (
       <div>
-        <div className="documentation-explorer-field-description">
+        <div className="render-exp-field-description">
           <p>{current.description}</p>
         </div>
-        <div className="documentation-root">
-          <div className="documentation-root-types">Type</div>
+        <div className="render-docs">
+          <div className="render-docs-types">Type</div>
         </div>
-        <div className="documentation-explorer-field">
+        <div className="render-exp-field">
           <Link
             to="/graphiql"
-            className="documentation-explorer-field-type"
+            className="render-exp-field-type"
             onClick={() => {
               setDocumentation({
                 type: current.type.name,
@@ -450,16 +442,16 @@ function RenderDocs(props: Props) {
     const current = array.find((item) => item.name === documentation.type);
     return (
       <>
-        <div className="documentation-root-header">
-          <div className="documentation-root-header-title">{documentation.title}</div>
+        <div className="render-docs-header">
+          <div className="render-docs-header-title">{documentation.title}</div>
         </div>
         {current && isTypeCurrentField(current)}
         {current && current.args && current.args.length > 0 && (
           <div>
-            <div className="documentation-root">
-              <div className="documentation-root-types">Arguments:</div>
+            <div className="render-docs">
+              <div className="render-docs-types">Arguments:</div>
             </div>
-            <div className="documentation-explorer-field">{fieldArguments(current)}</div>
+            <div className="render-exp-field">{fieldArguments(current)}</div>
           </div>
         )}
       </>
@@ -471,18 +463,18 @@ function RenderDocs(props: Props) {
     const array = Object.values(fields);
     return (
       <>
-        <div className="documentation-root-header">
-          <div className="documentation-root-header-title">{documentation.title}</div>
+        <div className="render-docs-header">
+          <div className="render-docs-header-title">{documentation.title}</div>
         </div>
-        <div className="documentation-root">
-          <div className="documentation-root-types">Fields:</div>
+        <div className="render-docs">
+          <div className="render-docs-types">Fields:</div>
         </div>
-        <ul className="documentation-explorer-list">
+        <ul className="render-exp-list">
           {array.map((item) => (
-            <li className="documentation-explorer-list-item" key={item.name}>
+            <li className="render-exp-list-item" key={item.name}>
               <Link
                 to="/graphiql"
-                className="documentation-explorer-field-name"
+                className="render-exp-field-name"
                 onClick={() => {
                   setDocumentation((prev) => ({ ...prev, type: item.name, title: item.name }));
                   setBackStack((prevStack) => [
@@ -497,18 +489,10 @@ function RenderDocs(props: Props) {
               >
                 {item.name}
               </Link>
-              {item.args && item.args.length > 0 && (
-              <>
-                (
-                {fieldArguments(item)}
-                )
-              </>
-              )}
-              :
-              {' '}
+              {item.args && item.args.length > 0 && <>({fieldArguments(item)})</>}:{' '}
               {graphQLListType(item)}
               {item.description && (
-                <div className="documentation-explorer-field-description">
+                <div className="render-exp-field-description">
                   <p>{item.description}</p>
                 </div>
               )}
@@ -521,20 +505,26 @@ function RenderDocs(props: Props) {
 
   function ScalarObjectType() {
     const description = schema && schema.getType(documentation.type);
-    const formattedText = description && description.description ? description.description.replace(
-      /`([^`]*)`/g,
-      (_, code) => `<code class="documentation-explorer-field-description-dangerously">${code.replace(
-        /`/g,
-        '&#96;'
-      )}</code>`
-    ) : '';
+    const formattedText =
+      description && description.description
+        ? description.description.replace(
+            /`([^`]*)`/g,
+            (_, code) =>
+              `<code class="render-exp-field-description-dangerously">${code.replace(
+                /`/g,
+                '&#96;'
+              )}</code>`
+          )
+        : '';
     return (
       <>
-        <div className="documentation-root-header">
-          <div className="documentation-root-header-title">{documentation.title}</div>
+        <div className="render-docs-header">
+          <div className="render-docs-header-title">{documentation.title}</div>
         </div>
-        <div className="documentation-root-description">
-          <p>{React.createElement('span', { dangerouslySetInnerHTML: { __html: formattedText } })}</p>
+        <div className="render-docs-description">
+          <p>
+            {React.createElement('span', { dangerouslySetInnerHTML: { __html: formattedText } })}
+          </p>
         </div>
       </>
     );
@@ -581,9 +571,9 @@ function RenderDocs(props: Props) {
     schema && (
       <>
         {documentation.type === 'Docs' ? null : (
-          <div className="documentation-explorer-back">
+          <div className="render-exp-back">
             <span
-              className="documentation-explorer-back-link"
+              className="render-exp-back-link"
               onClick={() => {
                 reversePage();
               }}
@@ -592,7 +582,7 @@ function RenderDocs(props: Props) {
             </span>
           </div>
         )}
-        <div className="documentation-explorer">
+        <div className="render-exp">
           <DocsRoot />
         </div>
       </>

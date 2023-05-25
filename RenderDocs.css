@@ -89,88 +89,88 @@ h6 {
   font-weight: inherit;
 }
 
-.documentation-root {
+.render-docs {
   margin-top: 20px;
 }
-.documentation-root-header {
+.render-docs-header {
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
-.documentation-root-header-title {
+.render-docs-header-title {
   font-weight: 500;
   font-size: 20px;
   margin-bottom: 3px;
 }
-.documentation-root-field {
+.render-docs-field {
   text-decoration: none;
   color: rgb(64, 129, 250);
 }
-.documentation-root-scalar {
+.render-docs-scalar {
   cursor: pointer;
   text-decoration: none;
   color: rgb(235, 156, 0);
 }
-.documentation-root-scalar:hover {
+.render-docs-scalar:hover {
   text-decoration: underline;
 }
-.documentation-root-content {
+.render-docs-content {
   margin-left: 8px;
   margin-top: 16px;
 }
-.documentation-root-types {
+.render-docs-types {
   align-items: center;
   display: flex;
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
 }
-.documentation-root-types svg {
+.render-docs-types svg {
   height: 16px;
   margin-right: 8px;
   width: 16px;
 }
-.documentation-explorer-list {
+.render-exp-list {
   list-style-type: none;
   padding: 0;
   margin-left: 8px;
   margin-top: 16px;
 }
-.documentation-explorer-list-item {
+.render-exp-list-item {
   margin-top: 16px;
 }
-.documentation-explorer-field {
+.render-exp-field {
   margin-left: 8px;
   margin-top: 16px;
 }
-.documentation-explorer-field-name {
+.render-exp-field-name {
   text-decoration: none;
   color: rgb(64, 129, 250);
 }
-.documentation-explorer-field-name:hover {
+.render-exp-field-name:hover {
   text-decoration: underline;
 }
-.documentation-explorer-field-arguments {
+.render-exp-field-arguments {
   color: rgb(255, 107, 139);
 }
-.documentation-explorer-field-arguments-single {
+.render-exp-field-arguments-single {
   display: inline;
 }
-.documentation-explorer-field-arguments-notsingle {
+.render-exp-field-arguments-notsingle {
   margin-left: 8px;
 }
-.documentation-explorer-field-type {
+.render-exp-field-type {
   text-decoration: none;
   color: rgb(235, 156, 0);
   cursor: pointer;
 }
-.documentation-explorer-field-type:hover {
+.render-exp-field-type:hover {
   text-decoration: underline;
 }
-.documentation-explorer-field-description {
+.render-exp-field-description {
   margin-top: 15px;
 }
-.documentation-explorer-field-description-dangerously {
+.render-exp-field-description-dangerously {
   background-color: rgba(0, 0, 0, 0.07);
   color: rgb(0, 0, 0);
   padding: 2px;
@@ -178,10 +178,10 @@ h6 {
   font-family: "Fira Code", monospace;
   font-size: 16px;
 }
-.documentation-explorer-back {
+.render-exp-back {
   display: flex;
 }
-.documentation-explorer-back-link {
+.render-exp-back-link {
   align-items: center;
   color: rgb(255, 0, 187);
   text-decoration: none;
@@ -189,10 +189,10 @@ h6 {
   margin-bottom: 10px;
   cursor: pointer;
 }
-.documentation-explorer-back-link:hover {
+.render-exp-back-link:hover {
   text-decoration: underline;
 }
-.documentation-explorer-back-link svg {
+.render-exp-back-link svg {
   height: 8px;
   margin-right: 8px;
   width: 8px;

@@ -28,6 +28,10 @@
         "tsx": "never"
       }
     ],
+    "indent":"off",
+    "operator-linebreak":"off",
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-one-expression-per-line": "off",
     "react/no-unstable-nested-components": "off",
     "no-underscore-dangle": "off",
     "import/no-extraneous-dependencies": "off",
