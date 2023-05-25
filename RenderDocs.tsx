@@ -41,8 +41,8 @@ function RenderDocs(props: Props) {
     })();
   }, []);
 
-  const [backStack, setBackStack] = useState<Documentation[] | []>([]);
-  const [documentation, setDocumentation] = useState({
+  const [docBox, setDocBox] = useState<Documentation[] | []>([]);
+  const [doc, setDoc] = useState({
     type: 'Docs',
     selectedType: 'Query',
     title: 'Docs',
@@ -50,9 +50,9 @@ function RenderDocs(props: Props) {
 
   function DefaultDocs() {
     return (
-      <div className="documentation">
+      <div className="docs">
         <div className="render-docs-header">
-          <div className="render-docs-header-title">{documentation.title}</div>
+          <div className="render-docs-header-title">{doc.title}</div>
         </div>
         <div className="render-docs-description">
           A GraphQL schema provides a root type for each kind of operation.
@@ -64,14 +64,14 @@ function RenderDocs(props: Props) {
             <span
               className="render-docs-scalar"
               onClick={() => {
-                setDocumentation({ type: 'Query', selectedType: 'Query', title: 'Query' });
-                setBackStack((prevStack) => [
+                setDoc({ type: 'Query', selectedType: 'Query', title: 'Query' });
+                setDocBox((prevStack) => [
                   ...prevStack,
                   { type: 'Query', selectedType: 'Query', title: 'Query' },
                 ]);
               }}
             >
-              {documentation.selectedType}
+              {doc.selectedType}
             </span>
           </div>
         </div>
@@ -88,12 +88,12 @@ function RenderDocs(props: Props) {
             to="/graphiql"
             className="render-exp-field-type"
             onClick={() => {
-              setDocumentation({
+              setDoc({
                 type: item.type.ofType.name,
                 selectedType: item.type.ofType.name,
                 title: item.type.ofType.name,
               });
-              setBackStack((prevStack) => [
+              setDocBox((prevStack) => [
                 ...prevStack,
                 {
                   type: item.type.ofType.name,
@@ -117,12 +117,12 @@ function RenderDocs(props: Props) {
             to="/graphiql"
             className="render-exp-field-type"
             onClick={() => {
-              setDocumentation({
+              setDoc({
                 type: item.type.ofType.ofType.name,
                 selectedType: item.type.ofType.ofType.name,
                 title: item.type.ofType.ofType.name,
               });
-              setBackStack((prevStack) => [
+              setDocBox((prevStack) => [
                 ...prevStack,
                 {
                   type: item.type.ofType.ofType.name,
@@ -143,12 +143,12 @@ function RenderDocs(props: Props) {
         to="/graphiql"
         className="render-exp-field-type"
         onClick={() => {
-          setDocumentation({
+          setDoc({
             type: item.type.name,
             selectedType: item.type.name,
             title: item.type.name,
           });
-          setBackStack((prevStack) => [
+          setDocBox((prevStack) => [
             ...prevStack,
             {
               type: item.type.name,
@@ -179,12 +179,12 @@ function RenderDocs(props: Props) {
                   to="/graphiql"
                   className="render-exp-field-type"
                   onClick={() => {
-                    setDocumentation({
+                    setDoc({
                       type: arg.type.name,
                       selectedType: arg.type.name,
                       title: arg.type.name,
                     });
-                    setBackStack((prevStack) => [
+                    setDocBox((prevStack) => [
                       ...prevStack,
                       {
                         type: arg.type.name,
@@ -207,16 +207,16 @@ function RenderDocs(props: Props) {
                   to="/graphiql"
                   className="render-exp-field-type"
                   onClick={() => {
-                    setDocumentation((prev) => ({
+                    setDoc((prev) => ({
                       ...prev,
                       type: arg.type.ofType.ofType.ofType.name,
                       title: arg.type.ofType.ofType.ofType.name,
                     }));
-                    setBackStack((prevStack) => [
+                    setDocBox((prevStack) => [
                       ...prevStack,
                       {
                         type: arg.type.ofType.ofType.ofType.name,
-                        selectedType: documentation.selectedType,
+                        selectedType: doc.selectedType,
                         title: arg.type.ofType.ofType.ofType.name,
                       },
                     ]);
@@ -238,16 +238,16 @@ function RenderDocs(props: Props) {
                   to="/graphiql"
                   className="render-exp-field-type"
                   onClick={() => {
-                    setDocumentation((prev) => ({
+                    setDoc((prev) => ({
                       ...prev,
                       type: arg.type.ofType.name,
                       title: arg.type.ofType.name,
                     }));
-                    setBackStack((prevStack) => [
+                    setDocBox((prevStack) => [
                       ...prevStack,
                       {
                         type: arg.type.ofType.name,
-                        selectedType: documentation.selectedType,
+                        selectedType: doc.selectedType,
                         title: arg.type.ofType.name,
                       },
                     ]);
@@ -266,16 +266,16 @@ function RenderDocs(props: Props) {
                 to="/graphiql"
                 className="render-exp-field-type"
                 onClick={() => {
-                  setDocumentation((prev) => ({
+                  setDoc((prev) => ({
                     ...prev,
                     type: arg.type.name,
                     title: arg.type.name,
                   }));
-                  setBackStack((prevStack) => [
+                  setDocBox((prevStack) => [
                     ...prevStack,
                     {
                       type: arg.type.name,
-                      selectedType: documentation.selectedType,
+                      selectedType: doc.selectedType,
                       title: arg.type.name,
                     },
                   ]);
@@ -306,12 +306,12 @@ function RenderDocs(props: Props) {
               to="/graphiql"
               className="render-exp-field-type"
               onClick={() => {
-                setDocumentation({
+                setDoc({
                   selectedType: current.type.ofType.name,
                   type: current.type.ofType.name,
                   title: current.type.ofType.name,
                 });
-                setBackStack((prevStack) => [
+                setDocBox((prevStack) => [
                   ...prevStack,
                   {
                     selectedType: current.type.ofType.name,
@@ -343,12 +343,12 @@ function RenderDocs(props: Props) {
               to="/graphiql"
               className="render-exp-field-type"
               onClick={() => {
-                setDocumentation({
+                setDoc({
                   type: current.type.ofType.ofType.name,
                   selectedType: current.type.ofType.ofType.name,
                   title: current.type.ofType.ofType.name,
                 });
-                setBackStack((prevStack) => [
+                setDocBox((prevStack) => [
                   ...prevStack,
                   {
                     type: current.type.ofType.ofType.name,
@@ -379,16 +379,16 @@ function RenderDocs(props: Props) {
               to="/graphiql"
               className="render-exp-field-type"
               onClick={() => {
-                setDocumentation((prev) => ({
+                setDoc((prev) => ({
                   ...prev,
                   type: current.type.name,
                   title: current.type.name,
                 }));
-                setBackStack((prevStack) => [
+                setDocBox((prevStack) => [
                   ...prevStack,
                   {
                     type: current.type.name,
-                    selectedType: documentation.selectedType,
+                    selectedType: doc.selectedType,
                     title: current.type.name,
                   },
                 ]);
@@ -413,12 +413,12 @@ function RenderDocs(props: Props) {
             to="/graphiql"
             className="render-exp-field-type"
             onClick={() => {
-              setDocumentation({
+              setDoc({
                 type: current.type.name,
                 selectedType: current.type.name,
                 title: current.type.name,
               });
-              setBackStack((prevStack) => [
+              setDocBox((prevStack) => [
                 ...prevStack,
                 {
                   type: current.type.name,
@@ -439,11 +439,11 @@ function RenderDocs(props: Props) {
     const field = schema && (schema.getType(selected) as GraphQLObject);
     const fields = field ? field.getFields() : {};
     const array: GraphQLNestedList[] = Object.values(fields);
-    const current = array.find((item) => item.name === documentation.type);
+    const current = array.find((item) => item.name === doc.type);
     return (
       <>
         <div className="render-docs-header">
-          <div className="render-docs-header-title">{documentation.title}</div>
+          <div className="render-docs-header-title">{doc.title}</div>
         </div>
         {current && isTypeCurrentField(current)}
         {current && current.args && current.args.length > 0 && (
@@ -464,7 +464,7 @@ function RenderDocs(props: Props) {
     return (
       <>
         <div className="render-docs-header">
-          <div className="render-docs-header-title">{documentation.title}</div>
+          <div className="render-docs-header-title">{doc.title}</div>
         </div>
         <div className="render-docs">
           <div className="render-docs-types">Fields:</div>
@@ -476,12 +476,12 @@ function RenderDocs(props: Props) {
                 to="/graphiql"
                 className="render-exp-field-name"
                 onClick={() => {
-                  setDocumentation((prev) => ({ ...prev, type: item.name, title: item.name }));
-                  setBackStack((prevStack) => [
+                  setDoc((prev) => ({ ...prev, type: item.name, title: item.name }));
+                  setDocBox((prevStack) => [
                     ...prevStack,
                     {
                       type: item.name,
-                      selectedType: documentation.selectedType,
+                      selectedType: doc.selectedType,
                       title: item.name,
                     },
                   ]);
@@ -504,7 +504,7 @@ function RenderDocs(props: Props) {
   };
 
   function ScalarObjectType() {
-    const description = schema && schema.getType(documentation.type);
+    const description = schema && schema.getType(doc.type);
     const formattedText =
       description && description.description
         ? description.description.replace(
@@ -519,7 +519,7 @@ function RenderDocs(props: Props) {
     return (
       <>
         <div className="render-docs-header">
-          <div className="render-docs-header-title">{documentation.title}</div>
+          <div className="render-docs-header-title">{doc.title}</div>
         </div>
         <div className="render-docs-description">
           <p>
@@ -531,46 +531,46 @@ function RenderDocs(props: Props) {
   }
 
   function Fields() {
-    const typeByName = schema && schema.getType(documentation.type);
+    const typeByName = schema && schema.getType(doc.type);
     if (typeByName instanceof GraphQLObjectType || typeByName instanceof GraphQLInputObjectType) {
       return objectType(typeByName);
     }
     if (typeByName instanceof GraphQLScalarType) {
       return <ScalarObjectType />;
     }
-    return <CurrentField selected={documentation.selectedType} />;
+    return <CurrentField selected={doc.selectedType} />;
   }
 
   const reversePage = () => {
-    if (backStack.length === 1) {
-      if (documentation.selectedType === 'Query') {
-        setDocumentation({
+    if (docBox.length === 1) {
+      if (doc.selectedType === 'Query') {
+        setDoc({
           type: 'Docs',
           selectedType: 'Query',
           title: 'Docs',
         });
-        setBackStack([]);
+        setDocBox([]);
       } else {
-        setDocumentation(backStack[0]);
-        setBackStack([]);
+        setDoc(docBox[0]);
+        setDocBox([]);
       }
-    } else if (backStack.length === 2) {
-      setDocumentation(backStack[0]);
-      setBackStack(backStack.slice(0, -1));
+    } else if (docBox.length === 2) {
+      setDoc(docBox[0]);
+      setDocBox(docBox.slice(0, -1));
     } else {
-      setDocumentation(backStack[backStack.length - 2]);
-      setBackStack(backStack.slice(0, -1));
+      setDoc(docBox[docBox.length - 2]);
+      setDocBox(docBox.slice(0, -1));
     }
   };
 
   function DocsRoot() {
-    return documentation.type === 'Docs' ? <DefaultDocs /> : <Fields />;
+    return doc.type === 'Docs' ? <DefaultDocs /> : <Fields />;
   }
 
   return (
     schema && (
       <>
-        {documentation.type === 'Docs' ? null : (
+        {doc.type === 'Docs' ? null : (
           <div className="render-exp-back">
             <span
               className="render-exp-back-link"
@@ -578,7 +578,7 @@ function RenderDocs(props: Props) {
                 reversePage();
               }}
             >
-              {backStack.length === 1 ? 'Docs' : backStack[backStack.length - 2].type}
+              {docBox.length === 1 ? 'Docs' : docBox[docBox.length - 2].type}
             </span>
           </div>
         )}
