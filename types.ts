@@ -1,13 +1,5 @@
 import { GraphQLObjectType, GraphQLInputObjectType } from 'graphql';
 
-export type DocumentationRickAndMorty = {
-  type: string;
-  selectedType: string;
-  title: string;
-};
-
-export type GraphQLObject = GraphQLObjectType | GraphQLInputObjectType;
-
 export type GrapQlLNestedNonNull = {
   name: string;
   args: {
@@ -80,3 +72,11 @@ export type GraphQLNestedList = {
   isDeprecated: false;
   deprecationReason: null;
 };
+
+export type Documentation = {
+  type: string;
+  selectedType: string;
+  title: string;
+};
+
+export type GraphQLObject = GraphQLObjectType | GraphQLInputObjectType;

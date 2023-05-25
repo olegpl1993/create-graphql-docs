@@ -10,12 +10,10 @@ import {
   getIntrospectionQuery,
   buildClientSchema,
 } from 'graphql';
-import { GraphQLNestedList, GraphQLObject, DocumentationRickAndMorty } from '../types';
-import './RenderSchema.scss';
+import { GraphQLNestedList, GraphQLObject, Documentation } from './types';
+import './RenderDocs.css';
 
-const url = 'https://rickandmortyapi.com/graphql';
-
-const requestSchema = async () => {
+const requestSchema = async (url: string) => {
   const res = await fetch(url, {
     method: 'POST',
     headers: {
@@ -30,15 +28,20 @@ const requestSchema = async () => {
   return schema;
 };
 
-function RenderSchema() {
+interface Props {
+  url: string;
+}
+
+function RenderDocs(props: Props) {
+  const { url } = props;
   const [schema, setSchema] = useState<GraphQLSchema | null>(null);
   useEffect(() => {
     (async () => {
-      setSchema(await requestSchema());
+      setSchema(await requestSchema(url));
     })();
   }, []);
 
-  const [backStack, setBackStack] = useState<DocumentationRickAndMorty[] | []>([]);
+  const [backStack, setBackStack] = useState<Documentation[] | []>([]);
   const [documentation, setDocumentation] = useState({
     type: 'Docs',
     selectedType: 'Query',
@@ -597,4 +600,4 @@ function RenderSchema() {
   );
 }
 
-export default RenderSchema;
+export default RenderDocs;

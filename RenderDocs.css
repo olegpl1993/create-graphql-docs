@@ -1,10 +1,11 @@
-@import "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 * {
   padding: 0;
   margin: 0;
   border: 0;
   box-sizing: border-box;
 }
+
 *,
 *:before,
 *:after {
@@ -12,20 +13,24 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 :focus,
 :active {
   outline: none;
 }
+
 a:focus,
 a:active {
   outline: none;
 }
+
 nav,
 footer,
 header,
 aside {
   display: block;
 }
+
 html,
 body {
   height: 100%;
@@ -37,32 +42,43 @@ body {
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+
 input,
 button,
 textarea {
   font-family: inherit;
 }
+
 input::-ms-clear {
   display: none;
 }
+
 button {
   cursor: pointer;
 }
+
 button::-moz-focus-inner {
   padding: 0;
   border: 0;
 }
+
 a,
-a:visited,
+a:visited {
+  text-decoration: none;
+}
+
 a:hover {
   text-decoration: none;
 }
+
 ul li {
   list-style: none;
 }
+
 img {
   vertical-align: top;
 }
+
 h1,
 h2,
 h3,
@@ -72,6 +88,7 @@ h6 {
   font-size: inherit;
   font-weight: inherit;
 }
+
 .documentation-root {
   margin-top: 20px;
 }
@@ -87,12 +104,12 @@ h6 {
 }
 .documentation-root-field {
   text-decoration: none;
-  color: #4081fa;
+  color: rgb(64, 129, 250);
 }
 .documentation-root-scalar {
   cursor: pointer;
   text-decoration: none;
-  color: #eb9c00;
+  color: rgb(235, 156, 0);
 }
 .documentation-root-scalar:hover {
   text-decoration: underline;
@@ -128,13 +145,13 @@ h6 {
 }
 .documentation-explorer-field-name {
   text-decoration: none;
-  color: #4081fa;
+  color: rgb(64, 129, 250);
 }
 .documentation-explorer-field-name:hover {
   text-decoration: underline;
 }
 .documentation-explorer-field-arguments {
-  color: #ff6b8b;
+  color: rgb(255, 107, 139);
 }
 .documentation-explorer-field-arguments-single {
   display: inline;
@@ -144,7 +161,7 @@ h6 {
 }
 .documentation-explorer-field-type {
   text-decoration: none;
-  color: #eb9c00;
+  color: rgb(235, 156, 0);
   cursor: pointer;
 }
 .documentation-explorer-field-type:hover {
@@ -154,11 +171,11 @@ h6 {
   margin-top: 15px;
 }
 .documentation-explorer-field-description-dangerously {
-  background-color: #00000012;
-  color: #000;
+  background-color: rgba(0, 0, 0, 0.07);
+  color: rgb(0, 0, 0);
   padding: 2px;
   border-radius: 4px;
-  font-family: Fira Code, monospace;
+  font-family: "Fira Code", monospace;
   font-size: 16px;
 }
 .documentation-explorer-back {
@@ -166,7 +183,7 @@ h6 {
 }
 .documentation-explorer-back-link {
   align-items: center;
-  color: #f0b;
+  color: rgb(255, 0, 187);
   text-decoration: none;
   display: flex;
   margin-bottom: 10px;
