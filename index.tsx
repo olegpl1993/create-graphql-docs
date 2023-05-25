@@ -8,5 +8,3 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <RenderDocs url="https://rickandmortyapi.com/graphql" />
   </BrowserRouter>
 );
-
-export default RenderDocs;
