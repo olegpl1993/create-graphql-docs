@@ -9,3 +9,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <RenderSchema />
   </BrowserRouter>
 );
+
+export default RenderSchema;

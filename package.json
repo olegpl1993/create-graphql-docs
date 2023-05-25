@@ -1,8 +1,9 @@
 {
   "name": "create-graphql-docs",
-  "private": true,
   "version": "0.0.1",
+  "license": "ISC",
   "type": "module",
+  "main": "dist/index.js",
   "scripts": {
     "start": "vite",
     "build": "vite build",
