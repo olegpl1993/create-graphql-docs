@@ -6,26 +6,13 @@ import {
   GraphQLScalarType,
   GraphQLList,
   GraphQLNonNull,
-  getIntrospectionQuery,
-  buildClientSchema,
 } from 'graphql';
 import { GraphQLNestedList, GraphQLObject, Documentation } from './types';
 import './RenderDocs.css';
-
-const requestSchema = async (url: string) => {
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: getIntrospectionQuery(),
-    }),
-  });
-  const result = await res.json();
-  const schema = buildClientSchema(result.data);
-  return schema;
-};
+import requestSchema from './scripts/scripts';
+import DefaultDocs from './components/DefaultDocs';
+import GraphQLListType from './components/GraphQLListType';
+import FieldArguments from './components/FieldArguments';
 
 interface Props {
   url: string;
@@ -46,241 +33,6 @@ function RenderDocs(props: Props) {
     selectedType: 'Query',
     title: 'Docs',
   });
-
-  function DefaultDocs() {
-    return (
-      <div className="render-docs">
-        <div className="render-docs-header">
-          <div className="render-docs-header-title">{doc.title}</div>
-        </div>
-        <div className="render-docs-description">
-          A GraphQL schema provides a root type for each kind of operation.
-        </div>
-        <div className="render-docs">
-          <div className="render-docs-types">Root Types</div>
-          <div className="render-docs-content">
-            <span className="render-docs-field">query</span>:{' '}
-            <span
-              className="render-docs-scalar"
-              onClick={() => {
-                setDoc({ type: 'Query', selectedType: 'Query', title: 'Query' });
-                setDocBox((prevStack) => [
-                  ...prevStack,
-                  { type: 'Query', selectedType: 'Query', title: 'Query' },
-                ]);
-              }}
-            >
-              {doc.selectedType}
-            </span>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  function graphQLListType(item: GraphQLNestedList) {
-    if (item.type instanceof GraphQLList) {
-      return (
-        <>
-          [
-          <span
-            className="render-exp-field-type link"
-            onClick={() => {
-              setDoc({
-                type: item.type.ofType.name,
-                selectedType: item.type.ofType.name,
-                title: item.type.ofType.name,
-              });
-              setDocBox((prevStack) => [
-                ...prevStack,
-                {
-                  type: item.type.ofType.name,
-                  selectedType: item.type.ofType.name,
-                  title: item.type.ofType.name,
-                },
-              ]);
-            }}
-          >
-            {item.type.ofType.name}
-          </span>
-          ]
-        </>
-      );
-    }
-    if (item.type instanceof GraphQLNonNull) {
-      return (
-        <>
-          [
-          <span
-            className="render-exp-field-type link"
-            onClick={() => {
-              setDoc({
-                type: item.type.ofType.ofType.name,
-                selectedType: item.type.ofType.ofType.name,
-                title: item.type.ofType.ofType.name,
-              });
-              setDocBox((prevStack) => [
-                ...prevStack,
-                {
-                  type: item.type.ofType.ofType.name,
-                  selectedType: item.type.ofType.ofType.name,
-                  title: item.type.ofType.ofType.name,
-                },
-              ]);
-            }}
-          >
-            {item.type.ofType.ofType.name}
-          </span>
-          ]!
-        </>
-      );
-    }
-    return (
-      <span
-        className="render-exp-field-type link"
-        onClick={() => {
-          setDoc({
-            type: item.type.name,
-            selectedType: item.type.name,
-            title: item.type.name,
-          });
-          setDocBox((prevStack) => [
-            ...prevStack,
-            {
-              type: item.type.name,
-              selectedType: item.type.name,
-              title: item.type.name,
-            },
-          ]);
-        }}
-      >
-        {item.type.name}
-      </span>
-    );
-  }
-
-  function fieldArguments(current: GraphQLNestedList) {
-    const clazz =
-      current.args.length > 1
-        ? 'render-exp-field-arguments-notsingle'
-        : 'render-exp-field-arguments-single';
-    return (
-      <>
-        {current.args.map((arg) => {
-          if (arg.type instanceof GraphQLInputObjectType) {
-            return (
-              <div className={clazz} key={arg.name}>
-                <span className="render-exp-field-arguments">{arg.name}</span>:{' '}
-                <span
-                  className="render-exp-field-type link"
-                  onClick={() => {
-                    setDoc({
-                      type: arg.type.name,
-                      selectedType: arg.type.name,
-                      title: arg.type.name,
-                    });
-                    setDocBox((prevStack) => [
-                      ...prevStack,
-                      {
-                        type: arg.type.name,
-                        selectedType: arg.type.name,
-                        title: arg.type.name,
-                      },
-                    ]);
-                  }}
-                >
-                  <span>{arg.type.name}</span>
-                </span>
-              </div>
-            );
-          }
-          if (arg.type.ofType instanceof GraphQLList) {
-            return (
-              <div className={clazz} key={arg.name}>
-                <span className="render-exp-field-arguments">{arg.name}</span>: [
-                <span
-                  className="render-exp-field-type link"
-                  onClick={() => {
-                    setDoc((prev) => ({
-                      ...prev,
-                      type: arg.type.ofType.ofType.ofType.name,
-                      title: arg.type.ofType.ofType.ofType.name,
-                    }));
-                    setDocBox((prevStack) => [
-                      ...prevStack,
-                      {
-                        type: arg.type.ofType.ofType.ofType.name,
-                        selectedType: doc.selectedType,
-                        title: arg.type.ofType.ofType.ofType.name,
-                      },
-                    ]);
-                  }}
-                >
-                  <span className="render-exp-field-type">
-                    {arg.type.ofType.ofType.ofType.name}
-                  </span>
-                </span>
-                ! ] !
-              </div>
-            );
-          }
-          if (arg.type.ofType instanceof GraphQLScalarType) {
-            return (
-              <div className={clazz} key={arg.name}>
-                <span className="render-exp-field-arguments">{arg.name}</span>:{' '}
-                <span
-                  className="render-exp-field-type link"
-                  onClick={() => {
-                    setDoc((prev) => ({
-                      ...prev,
-                      type: arg.type.ofType.name,
-                      title: arg.type.ofType.name,
-                    }));
-                    setDocBox((prevStack) => [
-                      ...prevStack,
-                      {
-                        type: arg.type.ofType.name,
-                        selectedType: doc.selectedType,
-                        title: arg.type.ofType.name,
-                      },
-                    ]);
-                  }}
-                >
-                  <span>{arg.type.ofType.name}</span>
-                </span>
-                !
-              </div>
-            );
-          }
-          return (
-            <div className={clazz} key={arg.name}>
-              <span className="render-exp-field-arguments">{arg.name}</span>:{' '}
-              <span
-                className="render-exp-field-type link"
-                onClick={() => {
-                  setDoc((prev) => ({
-                    ...prev,
-                    type: arg.type.name,
-                    title: arg.type.name,
-                  }));
-                  setDocBox((prevStack) => [
-                    ...prevStack,
-                    {
-                      type: arg.type.name,
-                      selectedType: doc.selectedType,
-                      title: arg.type.name,
-                    },
-                  ]);
-                }}
-              >
-                <span>{arg.type.name}</span>
-              </span>
-            </div>
-          );
-        })}
-      </>
-    );
-  }
 
   function isTypeCurrentField(current: GraphQLNestedList) {
     if (current.type instanceof GraphQLList) {
@@ -439,7 +191,9 @@ function RenderDocs(props: Props) {
             <div className="render-docs">
               <div className="render-docs-types">Arguments:</div>
             </div>
-            <div className="render-exp-field">{fieldArguments(current)}</div>
+            <div className="render-exp-field">
+              <FieldArguments setDoc={setDoc} setDocBox={setDocBox} current={current} doc={doc} />
+            </div>
           </div>
         )}
       </>
@@ -476,8 +230,10 @@ function RenderDocs(props: Props) {
               >
                 {item.name}
               </span>
-              {item.args && item.args.length > 0 && <>({fieldArguments(item)})</>}:{' '}
-              {graphQLListType(item)}
+              {item.args && item.args.length > 0 && (
+                <FieldArguments setDoc={setDoc} setDocBox={setDocBox} current={item} doc={doc} />
+              )}
+              : <GraphQLListType setDoc={setDoc} setDocBox={setDocBox} item={item} />
               {item.description && (
                 <div className="render-exp-field-description">
                   <p>{item.description}</p>
@@ -551,7 +307,11 @@ function RenderDocs(props: Props) {
   };
 
   function DocsRoot() {
-    return doc.type === 'Docs' ? <DefaultDocs /> : <Fields />;
+    return doc.type === 'Docs' ? (
+      <DefaultDocs doc={doc} setDoc={setDoc} setDocBox={setDocBox} />
+    ) : (
+      <Fields />
+    );
   }
 
   return (
