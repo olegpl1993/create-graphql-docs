@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   GraphQLSchema,
   GraphQLObjectType,
@@ -84,9 +83,8 @@ function RenderDocs(props: Props) {
       return (
         <>
           [
-          <Link
-            to="/graphiql"
-            className="render-exp-field-type"
+          <span
+            className="render-exp-field-type link"
             onClick={() => {
               setDoc({
                 type: item.type.ofType.name,
@@ -104,7 +102,7 @@ function RenderDocs(props: Props) {
             }}
           >
             {item.type.ofType.name}
-          </Link>
+          </span>
           ]
         </>
       );
@@ -113,9 +111,8 @@ function RenderDocs(props: Props) {
       return (
         <>
           [
-          <Link
-            to="/graphiql"
-            className="render-exp-field-type"
+          <span
+            className="render-exp-field-type link"
             onClick={() => {
               setDoc({
                 type: item.type.ofType.ofType.name,
@@ -133,15 +130,14 @@ function RenderDocs(props: Props) {
             }}
           >
             {item.type.ofType.ofType.name}
-          </Link>
+          </span>
           ]!
         </>
       );
     }
     return (
-      <Link
-        to="/graphiql"
-        className="render-exp-field-type"
+      <span
+        className="render-exp-field-type link"
         onClick={() => {
           setDoc({
             type: item.type.name,
@@ -159,7 +155,7 @@ function RenderDocs(props: Props) {
         }}
       >
         {item.type.name}
-      </Link>
+      </span>
     );
   }
 
@@ -175,9 +171,8 @@ function RenderDocs(props: Props) {
             return (
               <div className={clazz} key={arg.name}>
                 <span className="render-exp-field-arguments">{arg.name}</span>:{' '}
-                <Link
-                  to="/graphiql"
-                  className="render-exp-field-type"
+                <span
+                  className="render-exp-field-type link"
                   onClick={() => {
                     setDoc({
                       type: arg.type.name,
@@ -195,7 +190,7 @@ function RenderDocs(props: Props) {
                   }}
                 >
                   <span>{arg.type.name}</span>
-                </Link>
+                </span>
               </div>
             );
           }
@@ -203,9 +198,8 @@ function RenderDocs(props: Props) {
             return (
               <div className={clazz} key={arg.name}>
                 <span className="render-exp-field-arguments">{arg.name}</span>: [
-                <Link
-                  to="/graphiql"
-                  className="render-exp-field-type"
+                <span
+                  className="render-exp-field-type link"
                   onClick={() => {
                     setDoc((prev) => ({
                       ...prev,
@@ -225,7 +219,7 @@ function RenderDocs(props: Props) {
                   <span className="render-exp-field-type">
                     {arg.type.ofType.ofType.ofType.name}
                   </span>
-                </Link>
+                </span>
                 ! ] !
               </div>
             );
@@ -234,9 +228,8 @@ function RenderDocs(props: Props) {
             return (
               <div className={clazz} key={arg.name}>
                 <span className="render-exp-field-arguments">{arg.name}</span>:{' '}
-                <Link
-                  to="/graphiql"
-                  className="render-exp-field-type"
+                <span
+                  className="render-exp-field-type link"
                   onClick={() => {
                     setDoc((prev) => ({
                       ...prev,
@@ -254,7 +247,7 @@ function RenderDocs(props: Props) {
                   }}
                 >
                   <span>{arg.type.ofType.name}</span>
-                </Link>
+                </span>
                 !
               </div>
             );
@@ -262,9 +255,8 @@ function RenderDocs(props: Props) {
           return (
             <div className={clazz} key={arg.name}>
               <span className="render-exp-field-arguments">{arg.name}</span>:{' '}
-              <Link
-                to="/graphiql"
-                className="render-exp-field-type"
+              <span
+                className="render-exp-field-type link"
                 onClick={() => {
                   setDoc((prev) => ({
                     ...prev,
@@ -282,7 +274,7 @@ function RenderDocs(props: Props) {
                 }}
               >
                 <span>{arg.type.name}</span>
-              </Link>
+              </span>
             </div>
           );
         })}
@@ -302,9 +294,8 @@ function RenderDocs(props: Props) {
           </div>
           <div className="render-exp-field">
             [
-            <Link
-              to="/graphiql"
-              className="render-exp-field-type"
+            <span
+              className="render-exp-field-type link"
               onClick={() => {
                 setDoc({
                   selectedType: current.type.ofType.name,
@@ -322,7 +313,7 @@ function RenderDocs(props: Props) {
               }}
             >
               {current.type.ofType.name}
-            </Link>
+            </span>
             ]
           </div>
         </>
@@ -339,9 +330,8 @@ function RenderDocs(props: Props) {
           </div>
           <div className="render-exp-field">
             [
-            <Link
-              to="/graphiql"
-              className="render-exp-field-type"
+            <span
+              className="render-exp-field-type link"
               onClick={() => {
                 setDoc({
                   type: current.type.ofType.ofType.name,
@@ -359,7 +349,7 @@ function RenderDocs(props: Props) {
               }}
             >
               {current.type.ofType.ofType.name}
-            </Link>
+            </span>
             ]!
           </div>
         </div>
@@ -375,9 +365,8 @@ function RenderDocs(props: Props) {
             <div className="render-docs-types">Type</div>
           </div>
           <div className="render-exp-field">
-            <Link
-              to="/graphiql"
-              className="render-exp-field-type"
+            <span
+              className="render-exp-field-type link"
               onClick={() => {
                 setDoc((prev) => ({
                   ...prev,
@@ -395,7 +384,7 @@ function RenderDocs(props: Props) {
               }}
             >
               {current.type.name}
-            </Link>
+            </span>
           </div>
         </div>
       );
@@ -409,9 +398,8 @@ function RenderDocs(props: Props) {
           <div className="render-docs-types">Type</div>
         </div>
         <div className="render-exp-field">
-          <Link
-            to="/graphiql"
-            className="render-exp-field-type"
+          <span
+            className="render-exp-field-type link"
             onClick={() => {
               setDoc({
                 type: current.type.name,
@@ -429,7 +417,7 @@ function RenderDocs(props: Props) {
             }}
           >
             {current.type.name}
-          </Link>
+          </span>
         </div>
       </div>
     );
@@ -472,9 +460,8 @@ function RenderDocs(props: Props) {
         <ul className="render-exp-list">
           {array.map((item) => (
             <li className="render-exp-list-item" key={item.name}>
-              <Link
-                to="/graphiql"
-                className="render-exp-field-name"
+              <span
+                className="render-exp-field-name link"
                 onClick={() => {
                   setDoc((prev) => ({ ...prev, type: item.name, title: item.name }));
                   setDocBox((prevStack) => [
@@ -488,7 +475,7 @@ function RenderDocs(props: Props) {
                 }}
               >
                 {item.name}
-              </Link>
+              </span>
               {item.args && item.args.length > 0 && <>({fieldArguments(item)})</>}:{' '}
               {graphQLListType(item)}
               {item.description && (
