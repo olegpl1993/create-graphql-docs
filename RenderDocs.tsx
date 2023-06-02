@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IntrospectionObjectType, IntrospectionSchema, getIntrospectionQuery } from 'graphql';
 import Queries from './components/Queries';
 import Types from './components/Types';
+import './nullstyle.scss';
 import './RenderDocs.scss';
 
 const requestSchema = async (url: string) => {
@@ -16,6 +17,7 @@ const requestSchema = async (url: string) => {
   });
   const result = await res.json();
   const schema = result.data.__schema;
+  console.log(schema);
   return schema;
 };
 
@@ -35,11 +37,9 @@ function RenderDocs(props: Props) {
     })();
   }, []);
 
-  console.log(schema);
-
   return (
     schema && (
-      <>
+      <div className="docs">
         <button
           onClick={() => {
             setOpenTypes(!openTypes);
@@ -48,7 +48,7 @@ function RenderDocs(props: Props) {
           Types
         </button>
         {openTypes && (
-          <div>
+          <div className="docs-nested">
             <Types types={schema.types} />
           </div>
         )}
@@ -64,11 +64,11 @@ function RenderDocs(props: Props) {
         </button>
 
         {openQueries && (
-          <div>
+          <div className="docs-nested">
             <Queries queries={schema.types[0] as IntrospectionObjectType} />
           </div>
         )}
-      </>
+      </div>
     )
   );
 }
