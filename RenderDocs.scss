@@ -1,11 +1,26 @@
 .docs {
   border: 1px solid green;
 
+  &-types,
+  &-queries {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &-args {
+    color: #ff6b8b;
+  }
+
   &-link {
     cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  &-query {
+    color: #4081fa;
   }
 
   &-base {

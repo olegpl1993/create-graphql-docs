@@ -19,7 +19,7 @@ function Types(props: Props) {
 
   return (
     types && (
-      <>
+      <div className="docs-types">
         {types.map((type, index) => (
           <div key={type.name}>
             <button
@@ -33,7 +33,7 @@ function Types(props: Props) {
             {openType[index] && <div className="docs-nested">{type.description}</div>}
           </div>
         ))}
-      </>
+      </div>
     )
   );
 }
