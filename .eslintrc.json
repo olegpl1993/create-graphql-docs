@@ -28,6 +28,7 @@
         "tsx": "never"
       }
     ],
+    "react/button-has-type": "off",
     "indent":"off",
     "operator-linebreak":"off",
     "implicit-arrow-linebreak": "off",
