@@ -41,6 +41,7 @@ function RenderDocs(props: Props) {
     schema && (
       <div className="docs">
         <button
+          className="docs-link docs-base"
           onClick={() => {
             setOpenTypes(!openTypes);
           }}
@@ -56,6 +57,7 @@ function RenderDocs(props: Props) {
         <div>{' --------------- '}</div>
 
         <button
+          className="docs-link docs-base"
           onClick={() => {
             setOpenQueries(!openQueries);
           }}

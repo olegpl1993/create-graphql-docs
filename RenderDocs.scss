@@ -1,7 +1,22 @@
 .docs {
-border: 1px solid green;
+  border: 1px solid green;
 
-&-nested {
-  margin-left: 10px;
+  &-link {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &-base {
+    color: #f700ff;
+  }
+
+  &-nested {
+    margin-left: 15px;
+  }
+
+  &-type {
+    color: #eb9c00;
   }
 }

@@ -7,21 +7,30 @@ interface Props {
 
 function Types(props: Props) {
   const { types } = props;
-  const [openType, setOpenType] = useState<boolean>(false);
+  const [openType, setOpenType] = useState<boolean[]>(Array(types.length).fill(false));
+
+  const updateValue = (index: number) => {
+    setOpenType(() => {
+      const updatedState = [...openType];
+      updatedState[index] = !openType[index];
+      return updatedState;
+    });
+  };
 
   return (
     types && (
       <>
-        {types.map((type) => (
+        {types.map((type, index) => (
           <div key={type.name}>
             <button
+              className={type.description ? 'docs-type docs-link' : 'docs-type'}
               onClick={() => {
-                setOpenType(!openType);
+                updateValue(index);
               }}
             >
-              {type.name}
+              {type.name} {type.description && !openType[index] ? '>' : undefined}
             </button>
-            {openType && <div className="docs-nested">{type.description}</div>}
+            {openType[index] && <div className="docs-nested">{type.description}</div>}
           </div>
         ))}
       </>
