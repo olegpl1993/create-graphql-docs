@@ -39,9 +39,6 @@ function RenderDocs(props: Props) {
             <Types types={schema.types} />
           </div>
         )}
-
-        <div>{' --------------- '}</div>
-
         <button
           className="docs-link docs-base"
           onClick={() => {
@@ -50,7 +47,6 @@ function RenderDocs(props: Props) {
         >
           Queries
         </button>
-
         {openQueries && (
           <div className="docs-nested">
             <Queries queries={queryType as IntrospectionObjectType} />
