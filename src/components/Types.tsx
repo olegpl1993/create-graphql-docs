@@ -38,7 +38,7 @@ function Types(props: Props) {
                 {type.name}
               </button>
               {(type.description || (type.kind === 'OBJECT' && type.fields)) && !openType[index]
-                ? ' >'
+                ? <span className="docs-symbol"> ▼</span>
                 : null}
             </span>
             {openType[index] && (
