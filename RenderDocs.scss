@@ -28,7 +28,11 @@
   }
 
   &-nested {
+    padding: 5px;
     margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 
   &-type {

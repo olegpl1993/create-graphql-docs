@@ -22,15 +22,33 @@ function Types(props: Props) {
       <div className="docs-types">
         {types.map((type, index) => (
           <div key={type.name}>
-            <button
-              className={type.description ? 'docs-type docs-link' : 'docs-type'}
-              onClick={() => {
-                updateValue(index);
-              }}
-            >
-              {type.name} {type.description && !openType[index] ? '>' : undefined}
-            </button>
-            {openType[index] && <div className="docs-nested">{type.description}</div>}
+            <span>
+              <button
+                className={
+                  type.description || (type.kind === 'OBJECT' && type.fields)
+                    ? 'docs-type docs-link'
+                    : 'docs-type'
+                }
+                onClick={() => {
+                  if (type.description || (type.kind === 'OBJECT' && type.fields)) {
+                    updateValue(index);
+                  }
+                }}
+              >
+                {type.name}
+              </button>
+              {(type.description || (type.kind === 'OBJECT' && type.fields)) && !openType[index]
+                ? ' >'
+                : null}
+            </span>
+            {openType[index] && (
+              <div className="docs-nested">
+                {type.description && <div>{type.description}</div>}
+                {type.kind === 'OBJECT' && type.fields && (
+                  <div>FIELDS: {type.fields.map((field) => field.name).join(', ')}</div>
+                )}
+              </div>
+            )}
           </div>
         ))}
       </div>

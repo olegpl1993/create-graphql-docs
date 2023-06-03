@@ -38,7 +38,7 @@
     "import/no-extraneous-dependencies": "off",
     "object-curly-newline": "off", 
     "no-param-reassign": ["error", { "props": false }],
-    "no-console": "off",
+    "no-console": "warn",
     "linebreak-style": 0,
     "react/jsx-props-no-spreading": "off",
     "comma-dangle": "off",

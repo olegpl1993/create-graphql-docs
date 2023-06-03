@@ -8,7 +8,6 @@ interface Props {
 
 function Queries(props: Props) {
   const { queries } = props;
-  console.log(queries);
 
   return (
     queries && (

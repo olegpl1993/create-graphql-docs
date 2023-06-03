@@ -12,7 +12,6 @@ const requestSchema = async (url: string) => {
   });
   const result = await res.json();
   const schema = result.data.__schema;
-  console.log(schema);
   return schema;
 };
 

@@ -16,7 +16,6 @@ function RenderDocs(props: Props) {
   const [openQueries, setOpenQueries] = useState<boolean>(false);
   const [schema, setSchema] = useState<IntrospectionSchema | null>(null);
   const queryType = schema?.types.find(({ name }) => name === 'Query');
-  console.log(queryType);
 
   useEffect(() => {
     (async () => {
