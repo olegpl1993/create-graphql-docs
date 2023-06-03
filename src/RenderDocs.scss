@@ -1,0 +1,45 @@
+.docs {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+
+  &-types,
+  &-queries {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &-args {
+    color: #ff6b8b;
+  }
+
+  &-link {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &-query {
+    color: #4081fa;
+  }
+
+  &-base {
+    color: #f700ff;
+  }
+
+  &-nested {
+    padding: 5px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &-type {
+    color: #eb9c00;
+  }
+}
