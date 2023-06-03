@@ -1,25 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { IntrospectionObjectType, IntrospectionSchema, getIntrospectionQuery } from 'graphql';
+import { IntrospectionObjectType, IntrospectionSchema } from 'graphql';
+import requestSchema from './funcs/requestSchema';
 import Queries from './components/Queries';
 import Types from './components/Types';
 import './nullstyle.scss';
 import './RenderDocs.scss';
-
-const requestSchema = async (url: string) => {
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: getIntrospectionQuery(),
-    }),
-  });
-  const result = await res.json();
-  const schema = result.data.__schema;
-  console.log(schema);
-  return schema;
-};
 
 interface Props {
   url: string;
@@ -27,9 +12,11 @@ interface Props {
 
 function RenderDocs(props: Props) {
   const { url } = props;
-  const [schema, setSchema] = useState<IntrospectionSchema | null>(null);
   const [openTypes, setOpenTypes] = useState<boolean>(false);
   const [openQueries, setOpenQueries] = useState<boolean>(false);
+  const [schema, setSchema] = useState<IntrospectionSchema | null>(null);
+  const queryType = schema?.types.find(({ name }) => name === 'Query');
+  console.log(queryType);
 
   useEffect(() => {
     (async () => {
@@ -67,7 +54,7 @@ function RenderDocs(props: Props) {
 
         {openQueries && (
           <div className="docs-nested">
-            <Queries queries={schema.types[0] as IntrospectionObjectType} />
+            <Queries queries={queryType as IntrospectionObjectType} />
           </div>
         )}
       </div>
