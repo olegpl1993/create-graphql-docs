@@ -22,6 +22,7 @@ function Types(props: Props) {
       <div className="docs-types">
         {types.map((type, index) => (
           <div key={type.name}>
+
             <span>
               <button
                 className={
@@ -41,6 +42,7 @@ function Types(props: Props) {
                 ? <span className="docs-symbol"> ▼</span>
                 : null}
             </span>
+
             {openType[index] && (
               <div className="docs-nested">
                 {type.description && <div>{type.description}</div>}
@@ -49,6 +51,7 @@ function Types(props: Props) {
                 )}
               </div>
             )}
+
           </div>
         ))}
       </div>

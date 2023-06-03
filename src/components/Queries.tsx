@@ -17,6 +17,7 @@ function Queries(props: Props) {
             <div>
               <span className="docs-query">{query.name}</span>
               <span>(</span>
+
               <span>
                 {query.args &&
                   query.args.map((arg) => (
@@ -26,9 +27,11 @@ function Queries(props: Props) {
                     </div>
                   ))}
               </span>
+
               <span>
                 ): <ReturnType type={query.type} />
               </span>
+
             </div>
             <div>{query.description}</div>
           </div>

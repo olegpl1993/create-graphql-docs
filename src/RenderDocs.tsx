@@ -27,27 +27,35 @@ function RenderDocs(props: Props) {
   return (
     schema && (
       <div className="docs">
-        <button
-          className="docs-link docs-base"
-          onClick={() => {
-            setOpenTypes(!openTypes);
-          }}
-        >
-          Types
-        </button>
+        <span>
+          <button
+            className="docs-link docs-base"
+            onClick={() => {
+              setOpenTypes(!openTypes);
+            }}
+          >
+            Types
+          </button>
+          {!openTypes && <span className="docs-symbol"> ▼</span>}
+        </span>
+
         {openTypes && (
           <div className="docs-nested">
             <Types types={mainTypes as ReadonlyArray<IntrospectionType>} />
           </div>
         )}
-        <button
-          className="docs-link docs-base"
-          onClick={() => {
-            setOpenQueries(!openQueries);
-          }}
-        >
-          Query
-        </button>
+        <span>
+          <button
+            className="docs-link docs-base"
+            onClick={() => {
+              setOpenQueries(!openQueries);
+            }}
+          >
+            Query
+          </button>
+          {!openQueries && <span className="docs-symbol"> ▼</span>}
+        </span>
+
         {openQueries && (
           <div className="docs-nested">
             <Queries queries={queryType as IntrospectionObjectType} />
