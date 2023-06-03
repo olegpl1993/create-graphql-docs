@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import RenderDocs from './RenderDocs';
+import Docs from './Docs';
+
+// https://rickandmortyapi.com/graphql
+// https://countries.trevorblades.com/graphql
+// https://graphqlpokemon.favware.tech/
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <BrowserRouter>
-    <RenderDocs url="https://rickandmortyapi.com/graphql" />
-  </BrowserRouter>
+  <Docs url="https://rickandmortyapi.com/graphql" />
 );
