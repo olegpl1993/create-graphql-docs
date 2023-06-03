@@ -7,5 +7,5 @@ import Docs from './Docs';
 // https://graphqlpokemon.favware.tech/
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Docs url="https://rickandmortyapi.com/graphql" />
+  <Docs url="https://countries.trevorblades.com/graphql" />
 );

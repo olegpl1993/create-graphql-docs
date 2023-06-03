@@ -22,6 +22,7 @@ function Queries(props: Props) {
                   query.args.map((arg) => (
                     <div key={arg.name}>
                       <span className="docs-args">{arg.name}</span>: <ReturnType type={arg.type} />
+                      {arg.defaultValue && <span> = <span className="docs-defaultValue">{arg.defaultValue}</span></span>}
                     </div>
                   ))}
               </span>
