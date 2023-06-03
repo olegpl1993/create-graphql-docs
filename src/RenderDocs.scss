@@ -39,6 +39,8 @@
 
   &-base {
     color: #f700ff;
+    background-color: white;
+    border: none;
   }
 
   &-nested {
@@ -51,5 +53,7 @@
 
   &-type {
     color: #eb9c00;
+    background-color: white;
+    border: none;
   }
 }

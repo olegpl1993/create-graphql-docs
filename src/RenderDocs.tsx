@@ -3,7 +3,6 @@ import { IntrospectionObjectType, IntrospectionSchema, IntrospectionType } from 
 import requestSchema from './funcs/requestSchema';
 import Queries from './components/Queries';
 import Types from './components/Types';
-import './nullstyle.scss';
 import './RenderDocs.scss';
 
 interface Props {
