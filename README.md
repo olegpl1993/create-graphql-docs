@@ -1,6 +1,4 @@
-# create-graphql-docs
-Tool for react-app to rendering GraphQL API documentation.
-# Install: npm i create-graphql-docs
-
-# import RenderDocs from 'create-graphql-docs';
-# props url="https://your-api-url/graphql"
+Tool for react app to rendering GraphQL docs.
+# install: npm i create-graphql-docs
+# import Docs from 'create-graphql-docs';
+# props url="your-api-url"
