@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IntrospectionObjectType, IntrospectionSchema } from 'graphql';
+import { IntrospectionObjectType, IntrospectionSchema, IntrospectionType } from 'graphql';
 import requestSchema from './funcs/requestSchema';
 import Queries from './components/Queries';
 import Types from './components/Types';
@@ -16,6 +16,7 @@ function RenderDocs(props: Props) {
   const [openQueries, setOpenQueries] = useState<boolean>(false);
   const [schema, setSchema] = useState<IntrospectionSchema | null>(null);
   const queryType = schema?.types.find(({ name }) => name === 'Query');
+  const mainTypes = schema?.types.filter(({ name }) => name !== 'Query' && !name.startsWith('__'));
 
   useEffect(() => {
     (async () => {
@@ -36,7 +37,7 @@ function RenderDocs(props: Props) {
         </button>
         {openTypes && (
           <div className="docs-nested">
-            <Types types={schema.types} />
+            <Types types={mainTypes as ReadonlyArray<IntrospectionType>} />
           </div>
         )}
         <button
@@ -45,7 +46,7 @@ function RenderDocs(props: Props) {
             setOpenQueries(!openQueries);
           }}
         >
-          Queries
+          Query
         </button>
         {openQueries && (
           <div className="docs-nested">
