@@ -22,14 +22,12 @@ function Queries(props: Props) {
                 {query.args &&
                   query.args.map((arg) => (
                     <div key={arg.name}>
-                      <span className="docs-args">{arg.name}</span>:
-                      <ReturnType type={arg.type} />
+                      <span className="docs-args">{arg.name}</span>: <ReturnType type={arg.type} />
                     </div>
                   ))}
               </span>
               <span>
-                ):
-                <ReturnType type={query.type} />
+                ): <ReturnType type={query.type} />
               </span>
             </div>
             <div>{query.description}</div>
